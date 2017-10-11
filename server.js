@@ -1,3 +1,5 @@
+'use strict';
+
 
 const express = require('express');
 const router = express.Router();
@@ -35,9 +37,10 @@ app.post('/shopping-list', jsonParser, (req, res) => {
   // ensure `name` and `budget` are in request body
   const requiredFields = ['name', 'budget'];
   for (let i=0; i<requiredFields.length; i++) {
+    console.log(requiredFields[i]);
     const field = requiredFields[i];
     if (!(field in req.body)) {
-      const message = `Missing \`${field}\` in request body`
+      const message = `Missing \`${field}\` in request body`;
       console.error(message);
       return res.status(400).send(message);
     }
